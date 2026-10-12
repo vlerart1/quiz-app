@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modern Quiz App me HTML, CSS dhe JavaScript">
+    <title>QuizMaster — Quiz App</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- ================= HEADER ================= -->
+        <header class="topbar">
+            <div class="brand">
+                <div class="logo">Q</div>
+                <div>
+                    <h1>QuizMaster</h1>
+                    <span>Testo njohuritë e tua</span>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <button class="icon-btn" id="soundBtn" title="Sound">
+                    🔊
+                </button>
+
+                <button class="icon-btn" id="themeBtn" title="Ndrysho temën">
+                    🌙
+                </button>
+            </div>
+        </header>
+
+        <!-- ================= START SCREEN ================= -->
+        <main id="startScreen" class="screen active">
+
+            <section class="hero">
+                <div class="hero-badge">
+                    ⚡ QUIZ CHALLENGE
+                </div>
+
+                <h2>Sa mirë i njeh temat<br><span>e tua të preferuara?</span></h2>
+
+                <p>
+                    Zgjidh kategorinë, sfido veten dhe përpiqu të
+                    thyesh rekordin tënd.
+                </p>
+            </section>
+
+            <section class="setup-card">
+
+                <div class="section-title">
+                    <span>🎯</span>
+                    <div>
+                        <h3>Konfiguro Quiz-in</h3>
+                        <p>Zgjidh mënyrën si dëshiron të luash.</p>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="category">Kategoria</label>
+
+                        <select id="category">
+                            <option value="all">Të gjitha kategoritë</option>
+                            <option value="science">Shkencë</option>
+                            <option value="technology">Teknologji</option>
+                            <option value="history">Histori</option>
+                            <option value="geography">Gjeografi</option>
+                            <option value="sports">Sport</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="difficulty">Vështirësia</label>
+
+                        <select id="difficulty">
+                            <option value="all">Të gjitha</option>
+                            <option value="easy">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="questionCount">Pyetje</label>
+
+                        <select id="questionCount">
+                            <option value="5">5 pyetje</option>
+                            <option value="10" selected>10 pyetje</option>
+                            <option value="15">15 pyetje</option>
+                            <option value="20">20 pyetje</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="timeLimit">Koha</label>
+
+                        <select id="timeLimit">
+                            <option value="15">15 sekonda</option>
+                            <option value="20" selected>20 sekonda</option>
+                            <option value="30">30 sekonda</option>
+                            <option value="60">60 sekonda</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <button id="startBtn" class="primary-btn">
+                    <span>🚀</span>
+                    Fillo Quiz-in
+                </button>
+
+            </section>
+
+            <section class="stats-preview">
+
+                <div class="stat-card">
+                    <span class="stat-icon">🏆</span>
+                    <div>
+                        <strong id="bestScore">0</strong>
+                        <small>High Score</small>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-icon">🔥</span>
+                    <div>
+                        <strong id="bestStreak">0</strong>
+                        <small>Best Streak</small>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-icon">🎮</span>
+                    <div>
+                        <strong id="gamesPlayed">0</strong>
+                        <small>Quiz-e të luajtura</small>
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- ================= QUIZ SCREEN ================= -->
+        <main id="quizScreen" class="screen">
+
+            <section class="quiz-header">
+
+                <div class="quiz-meta">
+                    <span id="questionNumber">Pyetja 1 / 10</span>
+
+                    <div class="score-display">
+                        <span>⭐</span>
+                        <strong id="score">0</strong>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div id="progressBar" class="progress-bar"></div>
+                </div>
+
+                <div class="quiz-info">
+                    <span id="categoryBadge" class="category-badge">
+                        Teknologji
+                    </span>
+
+                    <div class="timer" id="timer">
+                        <span>⏱</span>
+                        <strong id="timeLeft">20</strong>
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="question-card">
+
+                <div class="question-top">
+                    <span id="difficultyBadge" class="difficulty-badge">
+                        MEDIUM
+                    </span>
+
+                    <span id="pointsLabel">
+                        +100 pikë
+                    </span>
+                </div>
+
+                <h2 id="questionText">
+                    Pyetja do të shfaqet këtu...
+                </h2>
+
+                <div id="answers" class="answers">
+                    <!-- Answers generated with JavaScript -->
+                </div>
+
+                <div id="feedback" class="feedback"></div>
+
+            </section>
+
+            <section class="quiz-footer">
+
+                <div class="streak">
+                    <span>🔥</span>
+                    <div>
+                        <strong id="streak">0</strong>
+                        <small>Streak</small>
+                    </div>
+                </div>
+
+                <button id="nextBtn" class="next-btn" disabled>
+                    Pyetja tjetër
+                    <span>→</span>
+                </button>
+
+            </section>
+
+        </main>
+
+        <!-- ================= RESULT SCREEN ================= -->
+        <main id="resultScreen" class="screen">
+
+            <section class="result-card">
+
+                <div class="result-icon" id="resultIcon">
+                    🏆
+                </div>
+
+                <p class="result-label">QUIZ PËRFUNDUAR</p>
+
+                <h2 id="resultTitle">
+                    Fantastike!
+                </h2>
+
+                <p id="resultMessage">
+                    Ke bërë një punë të shkëlqyer.
+                </p>
+
+                <div class="final-score">
+                    <span>Rezultati yt</span>
+                    <strong id="finalScore">0</strong>
+                    <small>pikë</small>
+                </div>
+
+                <div class="result-stats">
+
+                    <div>
+                        <span>✅</span>
+                        <strong id="correctAnswers">0</strong>
+                        <small>Saktë</small>
+                    </div>
+
+                    <div>
+                        <span>❌</span>
+                        <strong id="wrongAnswers">0</strong>
+                        <small>Gabim</small>
+                    </div>
+                    
+                    <div>
+                        <span>🎯</span>
+                        <strong id="accuracy">0%</strong>
+                        <small>Saktësi</small>
+                    </div>
+
+                    <div>
+                        <span>🔥</span>
+                        <strong id="finalStreak">0</strong>
+                        <small>Streak</small>
+                    </div>
+
+                </div>
+
+                <div id="newRecord" class="new-record hidden">
+                    🏆 REKORD I RI!
+                </div>
+
+                <div class="result-actions">
+                    <button id="restartBtn" class="primary-btn">
+                        🔄 Luaj përsëri
+                    </button>
+
+                    <button id="homeBtn" class="secondary-btn">
+                        🏠 Kryefaqja
+                    </button>
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- ================= TOAST ================= -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
